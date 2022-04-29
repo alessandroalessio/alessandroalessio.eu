@@ -4,70 +4,207 @@
     <title>Alessandro Alessio | Web Developer / Designer</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Alessandro Alessio è uno sviluppatore e un Web Designer della provincia di Alessandria" >
+    <link rel="apple-touch-icon" sizes="57x57" href="img/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="img/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="img/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="img/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="img/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="img/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="img/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="img/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="img/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="img/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+    <link rel="manifest" href="img/manifest.json">
+    <meta name="msapplication-TileColor" content="#111">
+    <meta name="msapplication-TileImage" content="img/ms-icon-144x144.png">
+    <meta name="theme-color" content="#111">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@100;300;400;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/clipboard@2/dist/clipboard.min.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <style>
         body{
             font-family: 'Jost', sans-serif;
         }
+        .cancopy{
+            position: relative;
+            cursor: pointer;
+            padding: .5em 0;
+            border-radius: 0.5em;
+            transition: all 0.25s ease-in-out;
+        }
+        .cancopy:after{
+            content: 'Copia';
+            font-size: 0.55em;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 0.125em 0.5em;
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            border-radius: 0.35em;
+            opacity: 0;
+            transition: all 0.25s ease-in-out;
+        }
+        .cancopy:hover{
+            background: #efefef;
+            padding: .5em;
+        }
+        .cancopy:hover:after{
+            opacity: 1;
+        }
+        .slide-in-top {
+            -webkit-animation: slide-in-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+                    animation: slide-in-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+        }
+        .slide-out-top {
+            -webkit-animation: slide-out-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+                    animation: slide-out-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+        }
+        @-webkit-keyframes slide-in-top {
+            0% {
+                -webkit-transform: translateY(-10px);
+                        transform: translateY(-10px);
+                opacity: 0;
+            }
+            100% {
+                -webkit-transform: translateY(0);
+                        transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        @keyframes slide-in-top {
+            0% {
+                -webkit-transform: translateY(-10px);
+                        transform: translateY(-10px);
+                opacity: 0;
+            }
+            100% {
+                -webkit-transform: translateY(0);
+                        transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        @-webkit-keyframes slide-out-top {
+            0% {
+                -webkit-transform: translateY(0);
+                        transform: translateY(0);
+                opacity: 1;
+            }
+            100% {
+                -webkit-transform: translateY(10px);
+                        transform: translateY(10px);
+                opacity: 0;
+            }
+        }
+        @keyframes slide-out-top {
+            0% {
+                -webkit-transform: translateY(0);
+                        transform: translateY(0);
+                opacity: 1;
+            }
+            100% {
+                -webkit-transform: translateY(10px);
+                        transform: translateY(10px);
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 <body>
     
-    <div class="h-screen flex text-center items-center">
+    <div id="cancopy-tooltip" class="inline-block absolute top-4 right-8 uppercase text-xs bg-gray-100 py-3 px-6 rounded-xl drop-shadow-xl opacity-0">Testo copiato</div>
+
+    <div class="h-full mt-4 md:h-screen md:mt-0 flex text-center items-center">
         <div class="vcard block w-screen">
-            <div class="img"><img src="img/alessandro-alessio.webp" alt="" class="mx-auto w-64"></div>
-            <h1 class="text-2xl uppercase font-bold">Alessandro Alessio</h1>
-            <h2 class="text-lg">Web Developer / Designer</h2>
-            
-            <div class="flex md:w-1/2 mx-auto my-8">
-                <div class="p-4 md:w-1/2 flex my-4 mx-auto">
+            <div class="flex items-center max-w-screen-md mx-auto">
+                <div class="img"><img src="img/alessandro-alessio.webp" alt="" class="mx-auto w-32"></div>
+                <div class="right-side text-left pl-8">
+                    <h1 class="text-2xl uppercase font-bold">Alessandro Alessio</h1>
+                    <h2 class="text-lg">Sviluppatore / Web Designer</h2>
+                    <div class="mt-4">                
+                        <a title="Github Alessandro Alessio" target="_blank" rel="noopener" href="https://github.com/alessandroalessio">
+                            <ion-icon name="logo-github" class="text-gray-500 w-8"></ion-icon>
+                        </a>
+                        <a title="Twitter Alessandro Alessio" target="_blank" rel="noopener" href="https://twitter.com/AAlessio86">
+                            <ion-icon name="logo-twitter" class="text-gray-500 w-8"></ion-icon>
+                        </a>
+                        <a title="Instagram Alessandro Alessio" target="_blank" rel="noopener" href="https://www.instagram.com/lxn/">
+                            <ion-icon name="logo-instagram" class="text-gray-500 w-8"></ion-icon>
+                        </a>
+                        <a title="LinkedIn Alessandro Alessio" target="_blank" rel="noopener" href="https://www.linkedin.com/in/alessandro-alessio-a1418874/">
+                            <ion-icon name="logo-linkedin" class="text-gray-500 w-8"></ion-icon>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-2 max-w-screen-md mx-auto my-8 pt-8">
+                <div class="flex pb-4 md:pb-0">
                     <div class="w-12 h-12 inline-flex items-center justify-center rounded-full bg-gray-100 text-gray-500 mb-4 flex-shrink-0">
                         <ion-icon name="mail-outline"></ion-icon>
                     </div>
                     <div class="flex-grow pl-6">
                         <h3 class="text-gray-900 text-lg title-font mb-2 font-bold text-left">Contatti</h3>
                         <p class="leading-relaxed text-left">
-                            <span>Email:</span> <a href="mailto:info@a2area.it" title="">info@a2area.it</a><br>
-                            <span>PEC:</span> <a href="mailto:a.alessio@arubapec.it" title="">a.alessio@arubapec.it</a><br>
-                            <span>Cell.:</span> <a href="tel:00393714385203" title="">+39 371 4385203</a><br>
+                            <div class="cancopy text-left text-sm leading-5" data-clipboard-text="info@a2area.it">
+                                <span>Email:</span> <a href="mailto:info@a2area.it" title="">info@a2area.it</a>
+                            </div>
+                            <div class="cancopy text-left text-sm leading-5" data-clipboard-text="a.alessio@arubapec.it">
+                                <span>PEC:</span> <a href="mailto:a.alessio@arubapec.it" title="">a.alessio@arubapec.it</a>
+                            </div>
+                            <div class="cancopy text-left text-sm leading-5" data-clipboard-text="00393714385203">
+                                <span>Cell.:</span> <a href="tel:00393714385203" title="">+39 371 4385203</a>
+                            </div>
                         </p>
                     </div>
                 </div>
     
-                <div class="p-4 md:w-1/2 flex my-4 mx-auto">
+                <div class="flex">
                     <div class="w-12 h-12 inline-flex items-center justify-center rounded-full bg-gray-100 text-gray-500 mb-4 flex-shrink-0">
                         <ion-icon name="information-outline"></ion-icon>
                     </div>
                     <div class="flex-grow pl-6">
                         <h3 class="text-gray-900 text-lg title-font mb-2 font-bold text-left">Informazioni fiscali</h3>
-                        <p class="leading-relaxed text-left">
-                            <span>Via U. De Foro 1<br>15121 Alessandria (AL)</span><br><br>
-                            <span>P.IVA</span> 02476590068<br>
-                            <span>C.F.</span> LSSLSN86D29A182I<br>
-                            <span>SDI</span> M5UXCR1<br>
+                        <p class="text-left">
+                            <div class="cancopy text-left text-sm leading-5 mb-3" data-clipboard-text="Via U. De Foro 1 - 15121 Alessandria (AL)">
+                                <span>Via U. De Foro 1<br>15121 Alessandria (AL)</span>
+                            </div>
+                            <div class="cancopy text-left text-sm leading-5" data-clipboard-text="02476590068">
+                                <span>P.IVA</span> 02476590068<br>
+                            </div>
+                            <div class="cancopy text-left text-sm leading-5" data-clipboard-text="LSSLSN86D29A182I">
+                                <span>C.F.</span> LSSLSN86D29A182I<br>
+                            </div>
+                            <div class="cancopy text-left text-sm leading-5" data-clipboard-text="M5UXCR1">
+                                <span>SDI</span> M5UXCR1<br>
+                            </div>
                         </p>
                     </div>
                 </div>
             </div>
-            <div class="flex md:w-1/2 mx-auto my-8">
-                <div class="p-4 md:w-1/2 flex my-4 mx-auto">
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-2 max-w-screen-md mx-auto my-8 pt-8">
+                <div class="flex pb-4 md:pb-0">
                     <div class="w-12 h-12 inline-flex items-center justify-center rounded-full  bg-gray-100 text-gray-500 mb-4 flex-shrink-0">
                         <ion-icon name="navigate-outline"></ion-icon>
                     </div>
                     <div class="flex-grow pl-6">
                         <h3 class="text-gray-900 text-lg title-font mb-2 font-bold text-left">Sede operativa</h3>
-                        <p class="leading-relaxed text-left">
-                            <span>Via Firenze 24<br>15121 Alessandria (AL)</span><br><br>
+                        <p class="cancopy text-left" data-clipboard-text="Via Firenze 24 - 15121 Alessandria (AL)">
+                            <span>Via Firenze 24<br>15121 Alessandria (AL)</span>
                         </p>
                     </div>
                 </div>
                 
-                <div class="p-4 md:w-1/2 flex my-4 mx-auto">
+                <div class="flex pb-4 md:pb-0">
                     <div class="w-12 h-12 inline-flex items-center justify-center rounded-full  bg-gray-100 text-gray-500 mb-4 flex-shrink-0">
                         <ion-icon name="link-outline"></ion-icon>
                     </div>
@@ -82,22 +219,22 @@
 
             </div>
 
-            <div class="p-4 md:w-1/4 my-4 align-center mx-auto text-center">                
-                <a title="Github Alessandro Alessio" target="_blank" rel="noopener" href="https://github.com/alessandroalessio">
-                    <ion-icon name="logo-github" class="text-gray-500 w-8"></ion-icon>
-                </a>
-                <a title="Twitter Alessandro Alessio" target="_blank" rel="noopener" href="https://twitter.com/AAlessio86">
-                    <ion-icon name="logo-twitter" class="text-gray-500 w-8"></ion-icon>
-                </a>
-                <a title="Instagram Alessandro Alessio" target="_blank" rel="noopener" href="https://www.instagram.com/lxn/">
-                    <ion-icon name="logo-instagram" class="text-gray-500 w-8"></ion-icon>
-                </a>
-                <a title="LinkedIn Alessandro Alessio" target="_blank" rel="noopener" href="https://www.linkedin.com/in/alessandro-alessio-a1418874/">
-                    <ion-icon name="logo-linkedin" class="text-gray-500 w-8"></ion-icon>
-                </a>
-            </div>
-
         </div>
     </div>
+
+    <script>
+        var clipboard = new ClipboardJS('.cancopy');
+        clipboard.on('success', function(e) {
+            var tooltip = document.getElementById('cancopy-tooltip');
+            tooltip.classList.add('slide-in-top');
+            setTimeout( () => {
+                tooltip.classList.add('slide-out-top');
+            }, 2000 );
+            setTimeout( () => {
+                tooltip.classList.remove('slide-in-top');
+                tooltip.classList.remove('slide-out-top');
+            }, 3000 );
+        });
+    </script>
 </body>
 </html>
