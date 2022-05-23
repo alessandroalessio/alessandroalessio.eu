@@ -1,0 +1,47 @@
+{
+    "conctacts": {
+      "mail" : {
+        "label": "E-mail",
+        "value": "info@a2area.it"
+      },
+      "pec" : {
+        "label": "PEC",
+        "value": "a.alessio@arubapec.it"
+      },
+      "phone" : {
+        "label": "Cell.",
+        "value": "00393714385203"
+      }
+    },
+    "tax_data": {
+      "address": {
+        "label": "Via De Foro 1<br>15121 Alessandria (AL)",
+        "value": "Via De Foro 1 - 15121 Alessandria (AL)"
+      },
+      "vat": {
+        "label": "P.IVA",
+        "value": "02476590068"
+      },
+      "code": {
+        "label": "C.F.",
+        "value": "LSSLSN86D29A182I"
+      },
+      "sdi": {
+        "label": "SDI",
+        "value": "M5UXCR1"
+      }
+    },
+    "headquarters": {
+      "operative": {
+        "label": "Via Firenze 24<br>15121 Alessandria (AL)",
+        "value": "Via Firenze 24 - 15121 Alessandria (AL)"
+      }
+    },
+    "social": {
+      "github": "https://github.com/alessandroalessio",
+      "twitter": "https://twitter.com/AAlessio86",
+      "instagram": "https://www.instagram.com/lxn/",
+      "linkedin": "https://www.linkedin.com/in/alessandro-alessio-a1418874/",
+      "calendly": "https://calendly.com/alessandroalessio"
+    }
+}
